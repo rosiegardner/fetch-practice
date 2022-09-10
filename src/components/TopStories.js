@@ -7,16 +7,33 @@ function TopStories() {
 
   useEffect(() => {
     fetch(`https://api.nytimes.com/svc/topstories/v2/home.json?api-key=${process.env.REACT_APP_API_KEY}`)
-      .then(response => response.json())
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`${response.status}: ${response.statusText}`);
+        } else {
+          return response.json()
+        }
+      })
       .then((jsonifiedResponse) => {
         setTopStories(jsonifiedResponse.results)
         setIsLoaded(true)
       })
       .catch((error) => {
-        setError(error)
+        setError(error.message)
         setIsLoaded(true)
       });
   }, [])
+  
 }
 
 export default TopStories;
+
+// .then(response => response.json())
+//       .then((jsonifiedResponse) => {
+//         setTopStories(jsonifiedResponse.results)
+//         setIsLoaded(true)
+//       })
+//       .catch((error) => {
+//         setError(error)
+//         setIsLoaded(true)
+//       });
