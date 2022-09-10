@@ -24,14 +24,14 @@ function TopStories() {
       });
   }, [])
 
-  if (error) {
-    return <h1>Error: {error}</h1>;
-  } else if (!isLoaded) {
-    return <h1>...Loading...</h1>;
+  if (error) {                        // if theres a error - return error.
+    return <h1>Error: {error}</h1>;  // As long as the error's default state of null isn't changed, this conditional won't be triggered. 
+  } else if (!isLoaded) {              
+    return <h1>...Loading...</h1>; // if isLoaded is false (!), render "..Loading.." message
   } else {
-    return (
-      <React.Fragment>
-        <h1>TopStories</h1>
+    return (         // return top stories 
+      <React.Fragment>   
+        <h1>TopStories</h1>   
         <ul>
           {topStories.map((article, index) =>
             <li key={index}>
