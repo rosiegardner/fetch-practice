@@ -19,18 +19,6 @@ describe('topStoriesReducer', () => {
     ).toThrowError("There is no action matching null.");
   });
 
-  test('requesting topStories should successfully change isLoaded from false to true', () => {
-    action = {
-      type: c.REQUEST_TOP_STORIES
-    };
-
-    expect(topStoriesReducer(initialState, action)).toEqual({
-      isLoaded: true,
-      topStories: [],
-      error: null
-    });
-  });
-
   test('successfully getting top stories should change isLoaded to true and update topStories', () => {
     const topStories = "An article";
     action = {
@@ -44,4 +32,5 @@ describe('topStoriesReducer', () => {
       error: null 
     });
   });
+
 });
